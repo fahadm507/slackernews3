@@ -22,6 +22,7 @@ body{
   padding:10px;
   text-decoration:none;
   color:;
+  margin-left:none;
 }
 #menu ul li:hover {
   background-color: #F2EFE4;
@@ -29,5 +30,25 @@ body{
 #content {
   background-color:white;
 }
+#content ul li,a{
+  text-decoration:none;
+  list-style-type: none;
+}
+#content ul li{
+  margin:10px;
+}
+.post-details {
+  margi
+}
+.button{
+  padding:5px;
+  background-color:#CB8C1D;
+  border:1px solid #666;
+  color:#000;
+  text-decoration:none;
+  margin-left:ß;
+}
+
+
 
 

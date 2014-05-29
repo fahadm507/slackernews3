@@ -1,5 +1,5 @@
 
-
+<!--
 <form action="/articles" method="post">
   <label for="title">Article title:</label>
   <input type="text" name="title" id="title" value="">
@@ -9,14 +9,17 @@
   <input type="text" name="description" id="description" value="">
   <input type= "submit" value="submit">
 </form>
+<input class="button value="sample Button" type="submit"/>
+-->
+
+
 
 <div id="content">
   <ul>
     <% @posts.each do |post| %>
     <li><a href="<%= post['url']%>"><%= post['title']%></a> (<%= post['url']%>)</li>
-    <li class ="post-details"><%= post['description'][0..100]%>...<a href="<%= post['url']%>">read more >> </a></li>
-
-    <%end%>
+    <li class ="post-details"><%= post['description'][0..100]%>...<a href="<%= post['url']%>">read more > </a></li>
     <li>comments here </li>
+    <%end%>
   </ul>
 </div>
