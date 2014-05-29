@@ -1,0 +1,33 @@
+
+
+/* Colors
+
+#F2EFE4;
+#F2EFE4
+#CB8C1D
+#4C3327
+#BD3632
+*/
+body{
+  width:960px;
+  margin:0 auto;
+  background-color:#F2EFE4;
+}
+#menu ul {
+  background-color:#BD3632;
+
+}
+#menu ul li {
+  display:inline-block;
+  padding:10px;
+  text-decoration:none;
+  color:;
+}
+#menu ul li:hover {
+  background-color: #F2EFE4;
+}
+#content {
+  background-color:white;
+}
+
+
