@@ -48,7 +48,10 @@ body{
   text-decoration:none;
   margin-left:ß;
 }
-
+.errors{
+  color:red;
+  margin-left:10px;
+}
 
 
 

@@ -2,10 +2,12 @@
 <head>
   <meta charset="utf-8">
   <title>Slacker News</title>
-  <link href="/main.css" rel="stylesheet" type="text/css">
+  <link href="/slacker_main.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-  <!-- navigation menu that can be displayed on every page -->
+  <!-- navigation menu that can be displayed on every page
+  Since this code is in the layout.erb file it will be run
+  on every page requested. -->
   <div id="menu">
     <ul>
       <li><a href="/articles">Articles</a></li>
@@ -15,5 +17,8 @@
     </ul>
   </div>
   <%= yield %>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="jquery.js"></script>
+  <script src="javscript.js"></script>
 </body>
 </html>

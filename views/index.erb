@@ -4,7 +4,13 @@
     <% @posts.each do |post| %>
     <li><a href="<%= post['url']%>"><%= post['title']%></a> (<%= post['url']%>)</li>
     <li class ="post-details"><%= post['description'][0..100]%>...<a href="<%= post['url']%>">read more > </a></li>
-    <li>comments here </li>
+    <form action="/comments" method="post">
+    <label for="comments"><a>comments</a></label><br />
+    <input type="text" size="60" id="comment" name="comment">
+    <input type= "submit" value="post"><br/>
+    </form>
+      <p class="diplay_comments">comments are to display here</p>
     <%end%>
   </ul>
 </div>
+

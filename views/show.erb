@@ -1,10 +1,16 @@
+
+<% if @errors != []%>
+  <% @errors.each do |error| %>
+  <p class="errors"><%= error %></p>
+  <%end %>
+<% end%>
 <form action="/articles/new" method="post">
-  <label for="title">Article title:</label>
-  <input type="text" name="title" id="title" value="">
-  <label for="url">url: </label>
-  <input type="text" name="url" id="url" value="">
-  <label for="description">Description: </label>
-  <input type="text" name="description" id="description" value="">
+  <label for="title">Article title:</label> <br />
+  <input type="text" name="title" id="title" value="<%= params['title'] || '' %>"><br />
+  <label for="url">url: </label><br />
+  <input type="text" name="url" id="url" value="<%= params['url'] || '' %>"><br />
+  <label for="description">Description: </label><br />
+  <input type="text" name="description" id="description" value="<%= params['description'] || '' %>"><br />
   <input type= "submit" value="submit">
 </form>
-<input class="button" value="sample Button" type="submit"/>
+<!-- <input class="button" value="sample Button" type="submit"/> -->

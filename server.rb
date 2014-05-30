@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'pry'
 require 'pg'
+require 'net/http'
 
 #The method that connects us to the news database
 def db_connection
@@ -12,12 +13,34 @@ def db_connection
   end
 end
 
-#This method takes params hash and inserts its contents to the database.
+#This method takes params hash and inserts its contents into the database.
 def save_post(params)
   sql= 'INSERT INTO posts (title, description, url, created_at)
         VALUES($1,$2,$3,NOW())'
   db_connection do |conn|
     conn.exec_params(sql,[params[:title],params[:description],params[:url]])
+  end
+end
+
+#A method that saves comments to the database
+def save_comments(params)
+  sql = 'INSERT INTO comments(post_id,description,created_at)
+        VALUES($1,$2, NOW())'
+    db_connection do |conn|
+      conn.exec_params(sql,[params[:comment]])
+    end
+end
+
+def check_if_url_exists_in_db?(params)
+  sql = 'SELECT * FROM posts WHERE url = $1'
+  check = db_connection do |conn|
+    conn.exec_params(sql,[params[:url]])
+  end
+
+  if check.values.empty?
+    false
+  else
+    true
   end
 end
 
@@ -70,18 +93,35 @@ get '/articles' do
   erb :index
 end
 
-#This get method gets the users input from form and
-#invokes the save_post method which inserts user's
+#This get method gets the users' input from the form and
+#invokes the save_post method which inserts user's informationt into the database
 post '/articles/new' do
+    @errors = []
   check_to_url = check_submissions(params[:url])
     if check_to_url == false
       @errors << "your url is not valid"
-    else
-      save_post(params)
     end
 
-redirect '/articles'
+  check_title_and_description(params)
+
+  if check_if_url_exists_in_db?(params) == true
+    @errors << "This article already exists"
+    erb :show
+  elsif @errors.empty?
+    save_post(params)
+    redirect '/articles'
+  else
+    erb :show
+  end
 end
+
+#get post method that gets comments to be stored in the database
+post '/comments' do
+  save_comments(params)
+
+  redirect '/articles'
+end
+
 
 get '/articles/new' do
   @errors = []
